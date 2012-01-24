@@ -1,1 +1,6 @@
-@TODO
+The plugin include support for three types of Realms:
+* LdapRealm
+* DBRealm
+* WildcardDBRealm
+
+You are also free to implement your own.

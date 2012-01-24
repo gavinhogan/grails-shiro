@@ -6,7 +6,6 @@ domainObjects: 3 Domain Objects
 shiroUser: 3.1 ShiroUser
 shiroRole: 3.2 ShiroRole
 movingOrRenaming: 3.3 Moving or Renaming
-securityFilters: 4 Security Filters
 authenticationContoller: 5 Authentication Contoller
 shiroRealms: 6 ShiroRealms
 permissions: 7 Permissions

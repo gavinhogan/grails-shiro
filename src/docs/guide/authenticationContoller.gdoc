@@ -1,1 +1,12 @@
-@TODO
+Form based authentication is provided by the AuthController.  The easiest way to create this controller is via the [shiro-quick-start|Scripts] or
+[create-auth-controller|Scripts] scripts.  These scripts will also create an accompanying view file.
+
+The controller handles the binding of the form parameters including the remember-me flag and passes these down to the Shiro Realms
+configured within the application.  The controller does not directly interact with the User databased or other authentication stores
+directly.  You may wish to modify the AuthController to customize the handling of common error conditions such as password expired.
+
+The AuthController also provides a rudimentary @unauthorized@ action, your users will see this if they attempt to access anything they
+are not permitted to.  You may wish to implement custom handling of this event.
+
+
+

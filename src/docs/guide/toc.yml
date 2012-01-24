@@ -2,15 +2,18 @@ introductionToTheGrailsShiroSecurityPlugin:
   title: Introduction to the Grails Shiro Security Plugin
   gettingStarted: Getting Started
   bootStrappingUsers: Boot Strapping Users
-coreConcepts: Core Concepts
 domainObjects: 
   title: Domain Objects
   shiroUser: ShiroUser
   shiroRole: ShiroRole
   movingOrRenaming: Moving or Renaming
-securityFilters: Security Filters
 authenticationContoller: Authentication Contoller
-shiroRealms: ShiroRealms
+shiroRealms:
+ title: Shiro Realms
+ dbRealm: DBRealm
+ wildCardDBRealm: WildcardDBRealm
+ ldapRealm: LDAPRealm
+ dbRealm: DBRealm
 permissions: Permissions
 accessControl: Access Control
 annotations: Annotation Based Configuration
