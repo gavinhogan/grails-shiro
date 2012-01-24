@@ -1,1 +1,21 @@
-TODO
+h1. shiro:user
+
+h2. Purpose
+This tag only writes its body to the output if the current user
+is either logged in or remembered from a previous session (via
+the "remember me" cookie).
+
+h2. Examples
+{code}
+<shiro:user>
+ <span>
+       Welcome <shiro:principal/>
+ </span>
+ ...
+</shiro:user>
+
+
+{code}
+
+
+

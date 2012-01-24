@@ -1,1 +1,26 @@
-TODO
+h1. shiro:notRemembered
+
+h2. Purpose
+Conditionally render the contents of the tag if the current user
+is not remembered from a previous session (via the "remember me"
+cookie). This is the case if they are a guest user or logged in.
+
+
+h2. Examples
+{code}
+<shiro:notRemembered>
+ <span>
+        <shiro:isLoggedIn>Welcome </shiro:isLoggedIn>
+        <shiro:isNotLoggedIn>Please Sign In</shiro:isNotLoggedIn>
+ </span>
+ ...
+</shiro:notRemembered>
+
+
+{code}
+
+h2. Description
+Conditionally render the contents of the tag if the current user
+is not remembered from a previous session (via the "remember me"
+cookie). This is the case if they are a guest user or logged in.
+

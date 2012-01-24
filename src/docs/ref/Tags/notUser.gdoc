@@ -1,1 +1,22 @@
-TODO
+h1. shiro:notUser
+
+h2. Purpose
+This tag only writes its body to the output if the current user
+is neither logged in nor remembered from a previous session (via
+the "remember me" cookie).
+
+
+h2. Examples
+{code}
+<shiro:notUser>
+ <span>
+       Welcome, please sign in.
+ </span>
+ ...
+</shiro:notUser>
+
+
+{code}
+
+
+

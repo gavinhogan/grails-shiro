@@ -1,1 +1,22 @@
-TODO
+h1. shiro:isNotLoggedIn
+
+h2. Purpose
+Conditionally render the contents of the tag if the current user NOT authenticated.
+
+h2. Examples
+{code}
+<shiro:isNotLoggedIn>
+    <span>
+           Please sign in <input name="username"/> <input type="password" name="password"/>
+    </span>
+    ...
+</shiro:isNotLoggedIn>
+
+
+{code}
+
+h2. Description
+This tag only writes its body to the output if the user is NOT authenticate, defers to SecurityUtils.subject.authenticated. (inversion of [isLoggedIn|Tags])
+
+
+

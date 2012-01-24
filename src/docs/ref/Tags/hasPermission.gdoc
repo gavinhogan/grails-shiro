@@ -1,1 +1,34 @@
-TODO
+h1. shiro:hasPermission
+
+h2. Purpose
+Conditionally render the contents of the tag if the currently logged in user has a given permission, more specifically if
+the user has a permission to satisfy the required permission.  See [wildcard permissions|guide:permissions]
+
+h2. Examples
+{code}
+<shiro:hasPermission permission='feedback.close.1234'>
+    <span>
+           You may close feedback ticket 1234
+    </span>
+    ...
+</shiro:hasPermission>
+
+<shiro:hasPermission type='com.example.security.FeedbackPermission' actions='close' target='1234' >
+    <span>
+           You may close feedback ticket 1234
+    </span>
+    ...
+</shiro:hasPermission>
+{code}
+h2. Description
+This tag only writes its body to the output if the current user
+has the given permission. (inversion of [lacksPermission|Tags])
+Attributes
+* @permission@ (optional) - The permission string that the user must satisfy to render the content of the tag
+* @type@ (optional) - Class of type org.apache.shiro.authz.Permission, must be used in conjunction with @actions@
+* @actions@ (optional) - The actions on the permission being tested see org.apache.shiro.grails.ShiroBasicPermission
+* @target@ (optional) - used in conjunction with @type@ and @actions@ to specify and instance. Defaults to *
+
+Note:
+You must provide a @permission@ or @type@, @action@ combination to use this tag.
+

@@ -1,1 +1,26 @@
-TODO
+h1. shiro:remembered
+
+h2. Purpose
+Conditionally render the contents of the tag if the current user
+is remembered from a previous session (via the "remember me"
+cookie) but NOT currently logged in.
+
+
+h2. Examples
+{code}
+<shiro:remembered>
+ <span>
+        Welcome back, please sign-in <input name="username"/> <input type="password" name="password"/>
+ </span>
+ ...
+</shiro:remembered>
+
+
+{code}
+
+h2. Description
+Conditionally render the contents of the tag if the current user
+is remembered from a previous session (via the "remember me"
+cookie) but NOT currently logged in.
+
+

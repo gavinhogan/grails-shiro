@@ -1,1 +1,24 @@
-TODO
+h1. shiro:principal
+
+h2. Purpose
+Outputs the string form of the current user's identity. By default
+this assumes that the subject has only one principal; its string
+representation is written to the page.
+
+
+h2. Examples
+{code}
+Welcome to the help desk <strong><shiro:principal  /></strong>
+
+...
+Welcome to the help desk <strong><shiro:principal field='firstName' /> <shiro:principal field='lastName' /></strong>
+
+{code}
+
+Attributes
+* @type@ (optional) Species the type or class of the principal to use
+* @property@ (optional) Specifies the name of the property on the principal to use as the string representation such as @firstName@.
+
+
+
+
