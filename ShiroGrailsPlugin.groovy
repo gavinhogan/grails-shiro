@@ -50,9 +50,9 @@ import org.springframework.aop.target.HotSwappableTargetSource
 
 class ShiroGrailsPlugin {
     // the plugin version
-    def version = "1.1.3"
+    def version = "1.2.0.MP"
     // the version or versions of Grails the plugin is designed for
-    def grailsVersion = "1.1 > *"
+    def grailsVersion = "1.2 > *"
     // the other plugins this plugin depends on
     def dependsOn = [:]
     // resources that are excluded from plugin packaging
@@ -64,12 +64,11 @@ class ShiroGrailsPlugin {
     def authorEmail = ""
     def title = "Apache Shiro Integration for Grails"
     def description = """\
-Enables Grails applications to take advantage of the Apache Shiro security layer.
-Adapted from previous JSecurity plugin.
+Enables Grails applications to take advantage of the Apache Shiro security layer, adding easy authentication and access control via roles and permissions.
 """
     
     // URL to the plugin's documentation
-    def documentation = "http://grails.org/Shiro+Plugin"
+    def documentation = "http://grails.org/plugin/shiro"
     
     def loadAfter = [ "controllers", "services" ]
     def observe = [ "controllers" ]
@@ -140,7 +139,7 @@ Adapted from previous JSecurity plugin.
             }
             
             // Allow the user to customise the session type: 'http' or
-            // 'shiro'.
+            // 'native'.
             if (securityConfig.session.mode) {
                 sessionMode = securityConfig.session.mode
             }
@@ -284,15 +283,6 @@ Adapted from previous JSecurity plugin.
                     }
                 }
             }
-
-            // Configure an instance of the plugin's "saved request".
-            // This handles unauthenticated POST requests so that the
-            // user doesn't have to manually resubmit data if his
-            // session times out.
-            'filter' {
-                'filter-name'('shiroSavedRequestFilter')
-                'filter-class'('org.apache.shiro.grails.SavedRequestFilter')
-            }
         }
         
         // Place the Shiro filters after the Spring character encoding filter, otherwise the latter filter won't work.
@@ -343,11 +333,6 @@ Adapted from previous JSecurity plugin.
 
         // Finally add the Shiro filter mapping after the selected insertion point.
         filter + {
-            'filter-mapping' {
-                'filter-name'('shiroSavedRequestFilter')
-                'url-pattern'('/*')
-            }
-
             'filter-mapping' {
                 'filter-name'('shiroFilter')
                 'url-pattern'("/*")
@@ -473,20 +458,9 @@ Adapted from previous JSecurity plugin.
                     targetUri << query
                 }
 
-                // Save the request if this is a POST so we don't lose
-                // the data after a redirect. The other part of the
-                // POST handling is in the ...Filter.
-                if (request.method == "POST") {
-                    filter.session["shiroGrailsSavedRequest"] = new SavedHttpServletRequest(request)
-
-                    if (!query) targetUri << '?'
-                    else targetUri << '&'
-                    targetUri << "shiroPostRedirect=1"
-                }
-
                 def redirectUri = ConfigurationHolder.config.security.shiro.redirect.uri
                 if (redirectUri) {
-                    filter.redirect(uri: redirectUri + "?targetUri=${targetUri}")
+                    filter.redirect(uri: redirectUri + "?targetUri=${targetUri.encodeAsURL()}")
                 }
                 else {
                     filter.redirect(
